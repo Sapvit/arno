@@ -12,6 +12,7 @@
             margin: 0;
             display: flex;
             align-items: center;
+            position: relative;
         }
 
         .contact-slide {
@@ -98,11 +99,10 @@
             margin-right: 10px;
         }
 
-        /* Стиль для всплывающего уведомления */
         .notification {
             display: none;
-            background-color: #4CAF50; /* Зелёный цвет */
-            color: white;
+            background-color: #E7E8DE;
+            color: #ABB9BD;
             padding: 10px;
             position: fixed;
             bottom: 20px;
@@ -122,22 +122,20 @@
         </div>
         <div class="form-container">
             <div class="form-box">
-                <form id="contact-form" target="hidden_iframe" method="POST" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdjMGFqPiQMQANaIXr6Wz7EzN9qKeCiWt9JPE1Ln1EsKKXWfg/formResponse" onsubmit="showNotification()">
+                <form id="contact-form" method="POST">
                     <input type="text" name="entry.1585960715" placeholder="Name (required)" required>
                     <input type="email" name="entry.1178157047" placeholder="E-mail (required)" required>
                     <input type="tel" name="entry.1342277341" placeholder="Phone">
                     <textarea name="entry.777583945" placeholder="Message (required)" required maxlength="4000" id="message"></textarea>
                     <div class="button-container">
                         <div class="char-count" id="char-count">0 / 4000</div>
-                        <button type="submit">Send</button>
+                        <button type="submit" id="submit-button">Send</button>
                     </div>
                 </form>
-                <iframe name="hidden_iframe" style="display:none;"></iframe>
             </div>
         </div>
     </div>
 
-    <!-- Всплывающее уведомление -->
     <div class="notification" id="notification">
         Your request has been sent, thanks!
     </div>
@@ -152,11 +150,30 @@
             charCount.textContent = `${count} / 4000`;
         });
 
+        document.getElementById('contact-form').onsubmit = function(event) {
+            event.preventDefault();
+            sendData();
+        };
+
+        function sendData() {
+            const formData = new FormData(document.getElementById('contact-form'));
+            fetch('https://docs.google.com/forms/u/0/d/e/1FAIpQLSdjMGFqPiQMQANaIXr6Wz7EzN9qKeCiWt9JPE1Ln1EsKKXWfg/formResponse', {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors'
+            })
+            .then(() => {
+                showNotification();
+                document.getElementById('contact-form').reset();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
         function showNotification() {
             notification.style.display = 'block';
             setTimeout(() => {
                 notification.style.display = 'none';
-            }, 3000); // Уведомление исчезает через 3 секунды
+            }, 3000);
         }
     </script>
 </body>
