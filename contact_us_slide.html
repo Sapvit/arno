@@ -97,6 +97,20 @@
             color: #ABB9BD;
             margin-right: 10px;
         }
+
+        /* Стиль для всплывающего уведомления */
+        .notification {
+            display: none;
+            background-color: #4CAF50; /* Зелёный цвет */
+            color: white;
+            padding: 10px;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
@@ -108,7 +122,7 @@
         </div>
         <div class="form-container">
             <div class="form-box">
-                <form id="contact-form" target="hidden_iframe" method="POST" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdjMGFqPiQMQANaIXr6Wz7EzN9qKeCiWt9JPE1Ln1EsKKXWfg/formResponse">
+                <form id="contact-form" target="hidden_iframe" method="POST" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdjMGFqPiQMQANaIXr6Wz7EzN9qKeCiWt9JPE1Ln1EsKKXWfg/formResponse" onsubmit="showNotification()">
                     <input type="text" name="entry.1585960715" placeholder="Name (required)" required>
                     <input type="email" name="entry.1178157047" placeholder="E-mail (required)" required>
                     <input type="tel" name="entry.1342277341" placeholder="Phone">
@@ -123,14 +137,27 @@
         </div>
     </div>
 
+    <!-- Всплывающее уведомление -->
+    <div class="notification" id="notification">
+        Your request has been sent, thanks!
+    </div>
+
     <script>
         const messageInput = document.getElementById('message');
         const charCount = document.getElementById('char-count');
+        const notification = document.getElementById('notification');
 
         messageInput.addEventListener('input', function() {
             const count = messageInput.value.length;
             charCount.textContent = `${count} / 4000`;
         });
+
+        function showNotification() {
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000); // Уведомление исчезает через 3 секунды
+        }
     </script>
 </body>
 </html>
