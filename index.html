@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arno & Partners</title>
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/open-sauce-sans" type="text/css"/>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="header-container"></div>
+    <div id="subheader-container"></div>
+    <main>
+        
+        <div id="slides-container"></div>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script>
+        function loadContent(containerId, fileName) {
+            fetch(fileName)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(containerId).innerHTML = data;
+    
+                    if (containerId === 'header-container') {
+                        document.getElementById('home-btn').addEventListener('click', function(event) {
+                            event.preventDefault();
+                            loadSlide('slide_0_home');
+                        });
+                        document.getElementById('about-btn').addEventListener('click', function(event) {
+                            event.preventDefault();
+                            loadSlide('about_us_slide');
+                        });
+                        document.getElementById('contact-btn').addEventListener('click', function(event) {
+                            event.preventDefault();
+                            loadSlide('contact_us_slide');
+                        });
+                    }
+    
+                    if (containerId === 'subheader-container') {
+                        setActiveTab();
+                        document.querySelectorAll('.subheader a').forEach(link => {
+                            link.addEventListener('click', function(event) {
+                                event.preventDefault();
+                                loadSlide(this.getAttribute('href').substring(1));
+                            });
+                        });
+                    }
+                })
+                .catch(error => console.error('Loading error:', error));
+        }
+    
+        function setActiveTab() {
+            const currentHash = window.location.hash || '#slide_0_home';
+            document.querySelectorAll('.subheader a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === currentHash) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    
+        function loadSlide(slideName) {
+            fetch(`${slideName}.html`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('slides-container').innerHTML = data;
+                    setActiveTab();
+                })
+                .catch(error => console.error('Loading error:', error));
+        }
+    
+        loadContent('header-container', 'header.html');
+        loadContent('subheader-container', 'subheader.html');
+        loadSlide('slide_0_home');
+        loadContent('footer-container', 'footer.html');
+    </script>
+    
+</body>
+</html>

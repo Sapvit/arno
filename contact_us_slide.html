@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
+    <title>Contact Us</title>
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/open-sauce-sans" type="text/css"/>
+    <style>
+        body {
+            background-color: #141412;
+            color: #FFFFFF;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-slide {
+            display: flex;
+            justify-content: space-between;
+            width: 95%;
+            padding: 0 30px;
+        }
+
+        .header-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .title-box {
+            font-size: 70px;
+            font-weight: 300;
+            color: #ABB9BD;
+            letter-spacing: 7px;
+        }
+
+        .form-container {
+            flex: 2;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .form-box {
+            max-width: 600px;
+            background-color: #abb9bd00;
+            color: #ABB9BD;
+            font-size: 20px;
+            font-weight: 300;
+            padding: 20px;
+            border-radius: 8px;
+            width: 100%;
+            text-align: left;
+            box-sizing: border-box;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ABB9BD;
+            background-color: #141412;
+            color: #ABB9BD;
+        }
+
+        textarea {
+            height: 150px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: top;
+            margin-top: 5px;
+            width: 104%;
+        }
+
+        button {
+            background-color: #ABB9BD;
+            color: #141412;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #A0AEB3;
+        }
+
+        .char-count {
+            font-size: 12px;
+            color: #ABB9BD;
+            margin-right: 10px;
+        }
+
+        /* Стиль для всплывающего уведомления */
+        .notification {
+            display: none;
+            background-color: #4CAF50; /* Зелёный цвет */
+            color: white;
+            padding: 10px;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-slide">
+        <div class="header-container">
+            <div class="title-box">
+                CONTACT US
+            </div>
+        </div>
+        <div class="form-container">
+            <div class="form-box">
+                <form id="contact-form" target="hidden_iframe" method="POST" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdjMGFqPiQMQANaIXr6Wz7EzN9qKeCiWt9JPE1Ln1EsKKXWfg/formResponse" onsubmit="showNotification()">
+                    <input type="text" name="entry.1585960715" placeholder="Name (required)" required>
+                    <input type="email" name="entry.1178157047" placeholder="E-mail (required)" required>
+                    <input type="tel" name="entry.1342277341" placeholder="Phone">
+                    <textarea name="entry.777583945" placeholder="Message (required)" required maxlength="4000" id="message"></textarea>
+                    <div class="button-container">
+                        <div class="char-count" id="char-count">0 / 4000</div>
+                        <button type="submit">Send</button>
+                    </div>
+                </form>
+                <iframe name="hidden_iframe" style="display:none;"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Всплывающее уведомление -->
+    <div class="notification" id="notification">
+        Your request has been sent, thanks!
+    </div>
+
+    <script>
+        const messageInput = document.getElementById('message');
+        const charCount = document.getElementById('char-count');
+        const notification = document.getElementById('notification');
+
+        messageInput.addEventListener('input', function() {
+            const count = messageInput.value.length;
+            charCount.textContent = `${count} / 4000`;
+        });
+
+        function showNotification() {
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000); // Уведомление исчезает через 3 секунды
+        }
+    </script>
+</body>
+</html>

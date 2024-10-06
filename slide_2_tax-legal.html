@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide - Capital Structuring</title>
+    <!-- <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/open-sauce-sans" type="text/css"/> -->
+    <style>
+        body {
+            /* font-family: 'OpenSauceSansRegular', sans-serif; */
+            font-weight: 300;
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        .slide {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto;
+            gap: 20px;
+            padding: 40px;
+        }
+
+        .title {
+            grid-column: 1 / 2;
+            font-size: 36px;
+            text-align: right;
+            font-weight: 300;
+            color: #ABB9BD;
+            margin-bottom: 20px;
+        }
+
+        .highlight-box {
+            grid-column: 2 / 3;
+            background-color: #ABB9BD;
+            color: #000000;
+            padding: 20px;
+            padding-left: 100px;
+            border-radius: 8px;
+            font-size: 14px;
+            text-align: right;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .blocks-container {
+            grid-column: 1 / 3;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .block {
+            color: #ABB9BD;
+            font-weight: 300;
+            padding: 20px;
+            background-color: transparent;
+            border-radius: 8px;
+            /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+        }
+
+        .block h2 {
+            font-size: 18px;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ffffff;
+            margin-bottom: 15px;
+        }
+
+        .block p {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide">
+        <h1 class="title">TAX AND LEGAL CONSULTING</h1>
+        <div class="highlight-box">
+            Arno & Partners offers a comprehensive range of services n tax planning and legal consulting.<br><br><b>No Tax Advice Provided:</b>
+            <br>We assess our clients' financial situations and collaborate with specialized professionals to achieve optimal tax efficiency while ensuring compliance with regulations and effective management of tax obligations.
+
+        </div>
+
+        <div class="blocks-container">
+            <div class="block">
+                <h2>TAX PLANNING</h2>
+                <hr>
+                <p>We provide tax consulting and planning services, assisting clients in structuring their tax obligations and preparing regular reports.</p>
+            </div>
+
+            <div class="block">
+                <h2>LEGAL CONSULTING</h2>
+                <hr>
+                <p>We offer advisory services on the legal management of assets, including the development of necessary documents and contracts. Our goal is to help clients make informed decisions while considering all legal aspects of asset management.</p>
+            </div>
+
+            <div class="block">
+                <h2>LEGAL COMPLIANCE</h2>
+                <hr>
+                <p>We facilitate compliance with regulations within existing asset structures and advise on necessary changes. Our team conducts analyses and assessments of current structures to ensure they meet applicable requirements and standards.</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
