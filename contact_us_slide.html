@@ -98,10 +98,9 @@
             margin-right: 10px;
         }
 
-        /* Стиль для всплывающего уведомления */
         .notification {
             display: none;
-            background-color: #4CAF50; /* Зелёный цвет */
+            background-color: #4CAF50;
             color: white;
             padding: 10px;
             position: fixed;
@@ -137,7 +136,6 @@
         </div>
     </div>
 
-    <!-- Всплывающее уведомление -->
     <div class="notification" id="notification">
         Your request has been sent, thanks!
     </div>
@@ -156,7 +154,7 @@
             notification.style.display = 'block';
             setTimeout(() => {
                 notification.style.display = 'none';
-            }, 3000); // Уведомление исчезает через 3 секунды
+            }, 3000);
         }
     </script>
 </body>
